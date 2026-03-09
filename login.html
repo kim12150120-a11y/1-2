@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+     선택자는 
+     id선택자 
+     태그(h1,input,div) 선택자 ,
+     클래스(class) 선택자
+     -->
+    <style>
+        input{
+            background-color: aqua;
+            width: 100%;
+            font-size: 30px;
+        }
+        .mydiv{
+            border: 1px solid black;
+            padding: 10px; /* 테두리를 기준으로 안쪽여백*/
+        }
+        button{
+            color: white;
+            background-color: rgb(225, 100, 100);
+            padding: 2rem;
+            margin: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="mydiv">
+        <label for="aa">id</label>
+        <input type="text" name="" id="aa">
+    </div>
+    <div>
+        <label for="bb">password</label>
+        <input type="password" name="" id="bb">
+    </div>
+    <button>로그인</button>
+</body>
+</html>
