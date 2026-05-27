@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1반 간식 랜덤 선택기</title>
+    <style>
+        body {
+            background-color: rgb(249, 238, 255);
+            font-family: "Noto Sans KR", sans-serif;
+        }
+
+        h1 {
+            color: rgb(126, 52, 166);
+        }
+
+        .snack_card {
+            margin: 18px auto;
+            padding: 28px;
+            width: 540px;
+            background-color: white;
+            border-radius: 22px;
+        }
+
+        .favorite_box li {
+            margin-bottom: 6px;
+        }
+
+        .result_box {
+            margin-top: 16px;
+            padding: 24px;
+            background-color: rgb(255, 232, 244);
+            border-radius: 22px;
+        }
+
+        input {
+            height: 38px;
+            width: 340px;
+        }
+
+        button {
+            height: 42px;
+            background-color: rgb(126, 52, 166);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+        }
+
+        img {
+            border-radius: 22px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: rgb(224, 86, 140);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="snack_card">
+        <h1>1반 간식 랜덤 선택기</h1>
+        <p>우리 반이 좋아하는 간식을 추가하고 하나를 랜덤으로 선택합니다.</p>
+        <img src="snackbar-hero_c1.png" alt="간식 대표 사진">
+
+        <div class="favorite_box">
+            <h2>좋아하는 간식</h2>
+            <ul id="favorite_list"></ul>
+        </div>
+
+        <div class="favorite_box">
+            <h2>간식 입력하기</h2>
+            <input type="text" id="snack_name" placeholder="먹고 싶은 간식">
+            <button id="register_btn">입력</button>
+        </div>
+
+        <div class="result_box">
+            <h2>랜덤 선택 결과</h2>
+            <p id="today_result">아래 버튼을 누르면 간식이 선택됩니다.</p>
+            <button id="lottery_btn">랜덤 선택</button>
+        </div>
+    </div>
+
+
+    <script>
+        let snacks = ['크로플', '복숭아 아이스티', '브라우니']
+
+        const renderSnack = function (snack) {
+            // 입력받은 간식 이름을 ul 내에 li로 추가한다.
+            const li = document.createElement("li");
+            li.textContent = snack;
+            document.getElementById("favorite_list").appendChild(li);
+        };// renderSnack 함수는 간식 이름을 받아서 ul 요소에 li 요소로 추가하는 역할을 한다.
+
+        for (let i = 0; i < snacks.length; i++) {
+            renderSnack(snacks[i]); // 반복문으로 renderSnack 함수를 호출하여 snacks 배열에 있는 간식들을 화면에 표시함
+        }//renderSnack를 불러와서 snacks 배열에 있는 간식들을 화면에 표시한다.
+
+        const addSnack = function (snack) {
+
+            if (snack) { // 간식 이름이 입력된 경우 간식 목록에 추가하고 true를 반환한다. snack=매개변수, snack은 빈값이면 false을 반환하고 값이 있으면 true를 반환한다.
+                snacks.push(snack);
+                return true; //return하면 함수 종료
+            }
+
+            return false; // 간식 이름이 입력되지 않은 경우 false를 반환한다. return하면 함수 종료 = 여기에 else 안써도 됨
+        };
+
+        document.getElementById("register_btn").onclick = function () {
+
+            const snack = document.getElementById("snack_name").value;
+            if (addSnack(snack)) {
+                renderSnack(snack); // 간식이 추가된 경우 화면에 표시한다
+                document.getElementById('snack_name').value = ''; // 입력창 추가 후에 창 초기화
+            } else {
+                alert("간식 이름을 입력해주세요."); // 간식에 입력 안하고 버튼 누르면 알림창 뜨게 하기
+            }
+        };// 간식 입력 버튼이 클릭되면 입력된 간식 이름을 가져와 addSnack 함수를 호출한다. 간식이 추가된 경우 화면에 표시하고 입력 필드를 초기화한다. 간식이 추가되지 않은 경우 경고 메시지를 표시한다.
+
+
+
+
+
+        function getRandomNumber(n) {
+            return Math.floor(Math.random() * n); // 걍 신경 쓰지말고 복붙해 근데 아마 쌤이 이 코드는 제공해줌
+        };
+
+
+
+
+        document.getElementById("lottery_btn").onclick = function () {
+            const num = getRandomNumber(snacks.length);// num 은 getRandomNumber 함수에서 반환된 랜덤 숫자이다. 걍 복붙하고 매개변수하고 하란대로 하면 됨
+            document.getElementById("today_result").textContent =
+                `선택된 간식은[${snacks[num]}] 입니다!`;
+        };// 랜덤 선택 버튼 클릭 -> getRandomNumber함수 불러옴 
+
+
+    </script>
+</body>
+
+</html>

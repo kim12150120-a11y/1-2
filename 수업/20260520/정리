@@ -1,0 +1,23 @@
+1.
+warp 키거나 다른 wife 접속시 네트워크 다름.
+(네트워크가 동일해야 한다)
+heidiSQL 프로그램을 각 PC에 접속 가능하다.
+
+2. 스키마 (데이터 베이스) 생성
+create database 데이터베이스명;
+create database pmh;
+
+3. 테이블 생성
+create table aa0(
+    title narchar(200), null
+    content narchar(200), null
+);
+
+4. 테이블에 데이터 삽입
+insert into aa0(title, content) values('안녕', 'mysql');
+
+5. 테이블 행삭제
+dlete from 'pmh','aa0' where title='다음시간';
+6. 테이블 행수정
+
+7. 테이블 모든 행 조회
